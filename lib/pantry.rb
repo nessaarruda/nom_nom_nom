@@ -14,19 +14,8 @@ class Pantry
   end
 
   def enough_ingredients_for?(recipe)
-    true_false = recipe.ingredients_required.map do |ingredient, amount|
-      if !@stock.include?(ingredient)
-        false
-      elsif stock_check(ingredient) >= amount
-        true
-      else
-        false
-      end
+    recipe.ingredients_required.all? do |ingredient, amount|
+      stock_check(ingredient) >= amount
     end
-      if true_false.include?(false)
-      false
-    else
-      true
-    end
-  end 
+  end
 end

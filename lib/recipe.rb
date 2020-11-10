@@ -13,15 +13,12 @@ class Recipe
   end
 
   def ingredients
-    ingredients_array = []
-    ingredients_array.concat(ingredients_required.keys)
+    ingredients_required.keys
   end
 
   def total_calories
-    result = 0
-    @ingredients_required.keys.each do |ingredient|
-      result += (ingredient.calories * @ingredients_required[ingredient])
+    @ingredients_required.sum do |ingredient, quantity|
+      ingredient.calories * quantity
     end
-    result
   end
 end
